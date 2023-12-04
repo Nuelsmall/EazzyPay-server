@@ -1,11 +1,11 @@
 const express = require("express");
 const cors = require("cors");
 const { db } = require("./db/db");
-const User = require("./models/user.jsx");
+const User = require("./models/user.js");
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
 // const { readdirSync } = require('fs')
-const { addIncome } = require('./controllers/incomeTransaction.jsx');
+const { addIncome } = require('./controllers/incomeTransaction.js');
 
 const app = express();
 
