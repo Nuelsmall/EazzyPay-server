@@ -4,6 +4,7 @@ const passport = require("passport");
 const Wallet = require("./model");
 const Transaction = require("../transactions/model");
 const JSONResponse = require("../services/response");
+const DepositService = require("../transactions/services/deposit");
 
 // endpoints
 // GET wallet and Transactions
@@ -27,6 +28,22 @@ router.get(
     };
     const response = new JSONResponse({ data: data }).build();
     res.status(200).json(response);
+  }
+);
+router.get(
+  "/account",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      let account = new DepositService().getAccountDetail()
+      const response = new JSONResponse({
+        data: account,
+      }).build();
+      //TODO: Create a wallet for user
+      res.status(200).json(response);
+    } catch (error) {
+      console.error("Error in /signup;", error);
+    }
   }
 );
 

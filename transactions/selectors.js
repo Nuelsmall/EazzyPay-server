@@ -58,4 +58,9 @@ const updateRunningBalance = async function (transaction) {
   return transaction.save();
 };
 
-module.exports = { debit, credit, getBalance, updateRunningBalance };
+
+const hasEnoughFunds = async function(walletId,amount){
+    const balance = await getBalance(walletId)
+    return balance >= amount
+}
+module.exports = { debit, credit, getBalance, updateRunningBalance,hasEnoughFunds };

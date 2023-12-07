@@ -16,7 +16,6 @@ const BillSchema = new Schema(
     },
     narration: {
       type: String,
-      required: true,
       trim: true,
       default: null,
       maxLength: 20,
@@ -35,15 +34,25 @@ const BillSchema = new Schema(
       //  For Airtime, send operator as product
     },
     biller: {
-        type: String,
-        default:null,
-        //  For Electricity
-      },
+      type: String,
+      default: null,
+      //  For Electricity
+    },
+    transactionReference: {
+      type: String,
+      require: true,
+      maxLength: 50,
+    },
+    userId: {
+      type: String,
+      require: true,
+      maxLength: 50,
+    },
   },
   { timestamps: true }
 );
 
-const BillsModel = model("Income", BillSchema);
+const BillsModel = model("Bills", BillSchema);
 
 module.exports = BillsModel;
 
