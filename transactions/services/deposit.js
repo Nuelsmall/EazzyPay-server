@@ -28,7 +28,7 @@ class DepositService {
       action: "Deposit",
       transactionType: "credit",
       description: `You have successfully deposited ${amount}`,
-      status: 'success'
+      status: 'success',
     });
     return transaction;
   }
