@@ -34,7 +34,7 @@ router.post(
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     try {
-      const userId = req.user._id;
+      const userId = req.user._id.toString();
       const { bill, message } = await new BillService().processBill(
         userId,
         req.body

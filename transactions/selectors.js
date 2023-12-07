@@ -32,7 +32,11 @@ const credit = async function (walletId) {
 };
 
 const debit = async function (walletId) {
-  const balance = await amountSum(walletId, "debit", ["pending", "processing"]);
+  const balance = await amountSum(walletId, "debit", [
+    "success",
+    "pending",
+    "processing",
+  ]);
   return balance;
 };
 
@@ -58,9 +62,14 @@ const updateRunningBalance = async function (transaction) {
   return transaction.save();
 };
 
-
-const hasEnoughFunds = async function(walletId,amount){
-    const balance = await getBalance(walletId)
-    return balance >= amount
-}
-module.exports = { debit, credit, getBalance, updateRunningBalance,hasEnoughFunds };
+const hasEnoughFunds = async function (walletId, amount) {
+  const balance = await getBalance(walletId);
+  return balance >= amount;
+};
+module.exports = {
+  debit,
+  credit,
+  getBalance,
+  updateRunningBalance,
+  hasEnoughFunds,
+};

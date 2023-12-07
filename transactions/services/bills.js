@@ -89,7 +89,7 @@ class BillService {
   // Get the response object
   async debitTransaction(amount, userId, action) {
     const wallet = await WalletModel.findOne({ userId });
-    const hasEnoughFundsInWallet = await hasEnoughFunds(wallet._id, amount);
+    const hasEnoughFundsInWallet = await hasEnoughFunds(wallet._id.toString(), amount);
     if (!hasEnoughFundsInWallet) return null;
     const transaction = await Transaction.customCreate({
       walletId: wallet._id,
